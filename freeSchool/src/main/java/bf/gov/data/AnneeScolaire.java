@@ -13,8 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,26 +25,31 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "annee_scolaire")
-@NamedQueries({
-    @NamedQuery(name = "AnneeScolaire.findAll", query = "SELECT a FROM AnneeScolaire a")})
 public class AnneeScolaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
+    
     @Column(name = "numero_annee")
     private Integer numeroAnnee;
+    
     @Column(name = "date_debut")
     @Temporal(TemporalType.DATE)
+    
     private Date dateDebut;
     @Column(name = "date_fin")
+    
     @Temporal(TemporalType.DATE)
     private Date dateFin;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numeroAnnee")
     private List<SessionAnnee> sessionAnneeList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numeroAnnee")
     private List<ProgrammationCours> programmationCoursList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "anneeScolaire")
     private List<Inscription> inscriptionList;
 

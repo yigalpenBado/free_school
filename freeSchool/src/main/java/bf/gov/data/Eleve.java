@@ -13,14 +13,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,37 +25,37 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "eleve")
-@NamedQueries({
-    @NamedQuery(name = "Eleve.findAll", query = "SELECT e FROM Eleve e")})
 public class Eleve implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "matricule")
     private String matricule;
-    @Size(max = 100)
+    
     @Column(name = "nom")
     private String nom;
-    @Size(max = 100)
+    
     @Column(name = "prenom")
     private String prenom;
+    
     @Column(name = "date_naissance")
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
-    @Size(max = 100)
+    
     @Column(name = "sexe")
     private String sexe;
-    @Size(max = 100)
+    
     @Column(name = "lieu_naissance")
     private String lieuNaissance;
-    @Size(max = 15)
+
     @Column(name = "contact")
     private String contact;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eleve")
     private List<Evaluation> evaluationList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eleve")
     private List<Inscription> inscriptionList;
 

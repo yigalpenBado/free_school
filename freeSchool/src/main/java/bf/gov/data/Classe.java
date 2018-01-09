@@ -14,11 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,24 +23,25 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "classe")
-@NamedQueries({
-    @NamedQuery(name = "Classe.findAll", query = "SELECT c FROM Classe c")})
 public class Classe implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Size(min = 1, max = 5)
+
     @Column(name = "code_classe")
     private String codeClasse;
-    @Size(max = 30)
+
     @Column(name = "libelle_classe")
     private String libelleClasse;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codeClasse")
     private List<ProgrammationCours> programmationCoursList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "classe")
     private List<MatiereClasse> matiereClasseList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "classe")
     private List<Inscription> inscriptionList;
 

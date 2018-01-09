@@ -26,24 +26,25 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "matiere")
-@NamedQueries({
-    @NamedQuery(name = "Matiere.findAll", query = "SELECT m FROM Matiere m")})
 public class Matiere implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Size(min = 1, max = 100)
+
     @Column(name = "code_matiere")
     private String codeMatiere;
-    @Size(max = 100)
+
     @Column(name = "intitule_matiere")
     private String intituleMatiere;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codeMatiere")
     private List<ProgrammationCours> programmationCoursList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere")
     private List<Evaluation> evaluationList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matiere")
     private List<MatiereClasse> matiereClasseList;
 

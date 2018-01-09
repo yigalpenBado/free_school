@@ -12,12 +12,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,8 +22,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "inscription")
-@NamedQueries({
-    @NamedQuery(name = "Inscription.findAll", query = "SELECT i FROM Inscription i")})
 public class Inscription implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,15 +30,18 @@ public class Inscription implements Serializable {
     @Column(name = "date_inscription")
     @Temporal(TemporalType.DATE)
     private Date dateInscription;
-    @Size(max = 100)
+
     @Column(name = "numero_inscription")
     private String numeroInscription;
+
     @JoinColumn(name = "numero_annee", referencedColumnName = "numero_annee", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private AnneeScolaire anneeScolaire;
+
     @JoinColumn(name = "code_classe", referencedColumnName = "code_classe", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Classe classe;
+
     @JoinColumn(name = "matricule", referencedColumnName = "matricule", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Eleve eleve;

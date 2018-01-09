@@ -12,8 +12,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,8 +22,6 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "evaluation")
-@NamedQueries({
-    @NamedQuery(name = "Evaluation.findAll", query = "SELECT e FROM Evaluation e")})
 public class Evaluation implements Serializable {
 
     private static final long serialVersionUID = 1L;
